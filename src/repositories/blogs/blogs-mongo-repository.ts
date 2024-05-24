@@ -12,7 +12,7 @@ export const blogsMongoRepository = {
             _id: new ObjectId(),
             ...input,
             createdAt: currentDateISOString(),
-            isMembership: true
+            isMembership: false
 
         }
         try {
