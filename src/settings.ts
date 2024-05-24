@@ -20,5 +20,6 @@ export const SETTINGS = {
     ADMIN_AUTH_FOR_TESTS: process.env.ADMIN_AUTH_FOR_TESTS || ''
 }
 
+
 //export const ADMIN_AUTH = 'YWRtaW46cXdlcnR5'
 //export const ADMIN_AUTH = process.env.ADMIN_AUTH || ''
