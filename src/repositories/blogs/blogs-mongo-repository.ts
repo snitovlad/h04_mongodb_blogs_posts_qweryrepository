@@ -1,10 +1,8 @@
 import { ObjectId } from "mongodb";
 import { blogCollection } from "../../db/mongo-db";
 import { currentDateISOString } from "../../helper/helper";
-import { BlogViewModel } from "../../models/blogs-models/BlogViewModel";
 import { CreateBlogModel } from "../../models/blogs-models/CreateBlogModel";
 import { UpdateBlogModel } from "../../models/blogs-models/UpdateBlogModel";
-import { BlogDBType } from "../../db/db-type";
 import { blogsQueryRepository } from "./blogs-query-repository";
 
 export const blogsMongoRepository = {

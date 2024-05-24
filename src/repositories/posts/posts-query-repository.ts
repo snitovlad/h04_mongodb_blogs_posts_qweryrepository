@@ -29,7 +29,7 @@ export const postsQueryRepository = {
 
         const filter = {
             ...byId,
-            //_id: { $in: [new ObjectId(someStringId), ...] },
+            //_id: { $in: [new ObjectId(someStringId), ...] }, //когда хотим получить только те все объекты, id к-рых есть в массиве
             //...search,
         }
 
