@@ -2,7 +2,7 @@ import { req } from './test-helpers'
 import { SETTINGS } from '../src/settings'
 import { CreatePostModel } from '../src/models/posts-models/CreatePostModel'
 import { UpdatePostModel } from '../src/models/posts-models/UpdatePostModel'
-import { clearTestDb, closeTestDb, connectToTestDb, createNewBlog, createNewEntity, createNewPost } from './mongo-datasets'
+import { clearTestDb, closeTestDb, connectToTestDb, createNewBlog, createNewEntity, createNewPost, createNewPost2 } from './mongo-datasets'
 import { ObjectId } from 'mongodb'
 
 
@@ -50,6 +50,30 @@ describe('/posts', () => {
         const res = await req
             .get(SETTINGS.PATH.POSTS + '/' + (new ObjectId()).toString()) //нет такого id
             .expect(404) // проверка на ошибку
+    })
+
+    //отсортируем посты по title в одну и в другую сторону
+    it('should sorting blogs by title', async () => {
+        //создаем два блога
+        const newBlog = createNewBlog
+        const res = await createNewEntity(newBlog, SETTINGS.PATH.BLOGS)
+        const newPost1 = createNewPost(res.body.id)
+        const newPost2 = createNewPost2(res.body.id)
+        const res1 = await createNewEntity(newPost1, SETTINGS.PATH.POSTS)
+        const res2 = await createNewEntity(newPost2, SETTINGS.PATH.POSTS)
+
+        const res3 = await req
+            .get(SETTINGS.PATH.BLOGS + '/' + res.body.id + '/posts' + '?sortBy=title&sortDirection=desc')
+            .expect(200)
+        expect(res3.body.items.length).toBe(2)
+        expect(res3.body.items[0]).toEqual(res2.body)
+        expect(res3.body.items[1]).toEqual(res1.body)
+
+        const res4 = await req
+            .get(SETTINGS.PATH.BLOGS + '/' + res.body.id + '/posts' + '?sortBy=title&sortDirection=asc')
+            .expect(200)
+        expect(res4.body.items[0]).toEqual(res1.body)
+        expect(res4.body.items[1]).toEqual(res2.body)
     })
 
     //создание нового поста

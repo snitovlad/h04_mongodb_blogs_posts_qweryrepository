@@ -42,6 +42,12 @@ export const createNewBlog: CreateBlogModel = {
     description: 'description1',
     websiteUrl: 'https://it.com'
 }
+export const createNewBlog2: CreateBlogModel = {
+    name: 'name2',
+    description: 'description1',
+    websiteUrl: 'https://it.com'
+}
+
 export const createNewEntity = async (newBlog: CreateBlogModel | CreatePostModel, path: string) => {
     return await req
         .post(path)
@@ -58,4 +64,20 @@ export const createNewPost = (id: string): CreatePostModel => {
         blogId: id
     }
     return newPost
+}
+
+export const createNewPost2 = (id: string): CreatePostModel => {
+    const newPost = {
+        title: 'newTitle2',
+        shortDescription: 'newShortDescription',
+        content: 'newContent',
+        blogId: id
+    }
+    return newPost
+}
+
+export const createNewPostForBlog = {
+    title: 'newTitle',
+    shortDescription: 'newShortDescription',
+    content: 'newContent',
 }

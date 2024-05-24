@@ -13,7 +13,7 @@ export const inputSortByQueryValidator = () => query('sortBy')
 export const inputSortDirectionQueryValidator = () => query('sortDirection')
     .optional()
     .trim().notEmpty().withMessage('Error!! Field shouldn\'t be empty')
-    .equals('desc' || 'asc').withMessage('Error!! Field should be empty "desc" or "asc')
+    .isIn(['asc', 'desc']).withMessage('Error!! Field should be "desc" or "asc')
 
 
 export const inputPageNumberQueryValidator = () => query('pageNumber')

@@ -17,7 +17,7 @@ export const blogsMongoRepository = {
         }
         try {
             const insertedInfo = await blogCollection.insertOne(newBlog)
-            console.log(insertedInfo)
+            //console.log(insertedInfo)
             return { id: insertedInfo.insertedId } //возвращаем объект
         } catch (e: any) {
             // log
